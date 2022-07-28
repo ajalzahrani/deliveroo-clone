@@ -23,7 +23,7 @@ export default function FeaturedRow({ id, title, description }) {
       >
         {/* Restaurant card */}
         <RestaurantCard
-          id={123}
+          id={id}
           imgUrl="https://links.papareact.com/gn7"
           title="Yu! Sushi"
           rating={4.5}

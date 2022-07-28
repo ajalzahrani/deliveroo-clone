@@ -21,8 +21,8 @@ import FeaturedRow from "../components/FeaturedRow";
 import sanityClient from "../client";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
   const [featuredCategories, setFeaturedCategories] = useState();
+  const navigation = useNavigation();
 
   // hook to hide screen navigation header
   useLayoutEffect(() => {
@@ -35,19 +35,16 @@ const HomeScreen = () => {
     sanityClient
       .fetch(
         `
-      *[_type == "featured"] {
-        restaurants[]-> {
-          ..., 
-          dishes[]->,
-      type-> {
-        name
-      }
-        },
-      }[0]
+        *[_type == "featured"] {
+          ...,
+        }[]
       `
       )
       .then((data) => {
         setFeaturedCategories(data);
+      })
+      .catch((error) => {
+        console.log("No data fetched");
       });
   }, []);
 
@@ -88,36 +85,16 @@ const HomeScreen = () => {
         <ScrollView className="bg-gray-100 flex-1">
           {/* Categories */}
           <Categories />
-
           {/* Features row */}
 
           {featuredCategories?.map((category) => (
             <FeaturedRow
-              key={category._id}
               id={category._id}
-              title={category.name}
+              key={category._id}
               description={category.short_description}
+              title={category.name}
             />
           ))}
-
-          <FeaturedRow
-            id="123"
-            title="Featrued"
-            description="Paid plaement from our partners"
-            // featuredCategory="featured"
-          />
-          <FeaturedRow
-            id="456"
-            title="Tasty Discounts"
-            description="Everyone's been enjoying these juciy discounts"
-            // featuredCategory="discounts"
-          />
-          <FeaturedRow
-            id="789"
-            title="Offers near you!"
-            description="Why not support your local restaurant tonight!"
-            // featuredCategory="offers"
-          />
         </ScrollView>
       </View>
     </SafeAreaView>
