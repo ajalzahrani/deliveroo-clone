@@ -36,8 +36,12 @@ const HomeScreen = () => {
       .fetch(
         `
         *[_type == "featured"] {
-          ...,
-        }[]
+              ...,
+              restaurants[]->{
+                ...,
+                dishes[]->
+              }
+            }[]
       `
       )
       .then((data) => {
