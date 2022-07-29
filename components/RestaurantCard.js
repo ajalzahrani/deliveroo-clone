@@ -2,7 +2,14 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { StarIcon } from "react-native-heroicons/solid";
 import { LocationMarkerIcon } from "react-native-heroicons/outline";
-import { urlFor } from "../client";
+import client from "../client";
+import imageUrlBuilder from "@sanity/image-url";
+// FIXME: handl error when image is not loaded or empty
+const builder = imageUrlBuilder(client);
+
+function urlFor(source) {
+  return builder.image(source);
+}
 
 const RestaurantCard = ({
   id,
@@ -16,11 +23,12 @@ const RestaurantCard = ({
   long,
   lat,
 }) => {
+  // console.log("this", imgUrl); // TODO: delete this line
   return (
     <TouchableOpacity className="bg-white mr-3 shadow">
       <Image
         source={{
-          uri: urlFor(imgUrl).url(),
+          uri: urlFor(imgUrl ? imgUrl : null).url(),
         }}
         className="h-36 w-64 rounded-sm"
       />

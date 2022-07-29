@@ -30,6 +30,7 @@ export default function FeaturedRow({ id, title, description }) {
         console.log("No data fetched");
       });
   }, []);
+  //TODO: delete this line
   // console.log(restaurants);
   return (
     <View>
@@ -52,7 +53,7 @@ export default function FeaturedRow({ id, title, description }) {
         {restaurants?.map((value) => {
           console.log(
             value._id,
-            value.image.asset._ref,
+            value.image?.asset._ref,
             value.address,
             value.name,
             value.dishes,
@@ -67,7 +68,7 @@ export default function FeaturedRow({ id, title, description }) {
           <RestaurantCard
             key={restaurant._id}
             id={restaurant._id}
-            imgUrl={restaurant.image.asset._ref}
+            imgUrl={restaurant.image?.asset._ref}
             address={restaurant.address}
             title={restaurant.name}
             dishes={restaurant.dishes}
