@@ -4,6 +4,7 @@ import { StarIcon } from "react-native-heroicons/solid";
 import { LocationMarkerIcon } from "react-native-heroicons/outline";
 import client from "../client";
 import imageUrlBuilder from "@sanity/image-url";
+import { useNavigation } from "@react-navigation/native";
 // FIXME: handl error when image is not loaded or empty
 const builder = imageUrlBuilder(client);
 
@@ -23,9 +24,15 @@ const RestaurantCard = ({
   long,
   lat,
 }) => {
+  const navigation = useNavigation();
   // console.log("this", imgUrl); // TODO: delete this line
   return (
-    <TouchableOpacity className="bg-white mr-3 shadow">
+    <TouchableOpacity
+      className="bg-white mr-3 shadow"
+      onPress={() => {
+        navigation.navigate("restaurant");
+      }}
+    >
       <Image
         source={{
           uri: urlFor(imgUrl ? imgUrl : null).url(),

@@ -50,20 +50,7 @@ export default function FeaturedRow({ id, title, description }) {
         className="pt-4"
       >
         {/* Restaurant card */}
-        {restaurants?.map((value) => {
-          console.log(
-            value._id,
-            value.image?.asset._ref,
-            value.address,
-            value.name,
-            value.dishes,
-            value.rating,
-            value.short_description,
-            value.type?.name,
-            value.long,
-            value.lat
-          );
-        })}
+
         {restaurants?.map((restaurant) => (
           <RestaurantCard
             key={restaurant._id}
