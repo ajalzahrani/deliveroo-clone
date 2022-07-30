@@ -5,7 +5,7 @@ import { PlusCircleIcon, MinusCircleIcon } from "react-native-heroicons/solid";
 const DishCard = () => {
   return (
     <View className="p-3 border  border-gray-300">
-      <View className="flex-row items-center justify-between">
+      <View className="flex-row items-center flex-1">
         <View style={{ alignSelf: "stretch", flexWrap: "wrap" }}>
           <Text>PERi-PERi Nuts</Text>
           <Text className="text-gray-500 text-xs">
