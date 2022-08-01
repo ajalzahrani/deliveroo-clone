@@ -3,6 +3,13 @@ import React, { useState } from "react";
 import { PlusCircleIcon, MinusCircleIcon } from "react-native-heroicons/solid";
 import client from "../client";
 import imageUrlBuilder from "@sanity/image-url";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToBasket,
+  selectBasketItems,
+  removeFromBasket,
+  selectBasketItemsWithId,
+} from "../features/basketSlice";
 // FIXME: handl error when image is not loaded or empty
 const builder = imageUrlBuilder(client);
 
@@ -12,6 +19,16 @@ function urlFor(source) {
 
 const DishRow = ({ id, name, description, price, image }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => selectBasketItemsWithId(state, id));
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket({ id, name, description, price, image }));
+  };
+  const removeItemFromBasket = () => {
+    if (!items.length > 0) return;
+    dispatch(removeFromBasket({ id }));
+  };
 
   return (
     <>
@@ -45,11 +62,13 @@ const DishRow = ({ id, name, description, price, image }) => {
       {isPressed && (
         <View className="bg-white">
           <View className="flex-row items-center space-x-2 pb-3">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={removeItemFromBasket}>
               <MinusCircleIcon color="#00ccbb" size={40} />
             </TouchableOpacity>
-            <Text className="">3</Text>
-            <TouchableOpacity>
+
+            <Text className="">{items.length}</Text>
+
+            <TouchableOpacity onPress={addItemToBasket}>
               <PlusCircleIcon color="#00CCBB" size={40} />
             </TouchableOpacity>
           </View>
