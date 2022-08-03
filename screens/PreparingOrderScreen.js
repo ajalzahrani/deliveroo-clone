@@ -8,8 +8,8 @@ const PreparingOrderScreen = () => {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate("basket");
-    }, 3000);
+      navigation.navigate("delivery");
+    }, 1000);
   }, []);
   return (
     <SafeAreaView className="bg-black flex-1 justify-center items-center">
