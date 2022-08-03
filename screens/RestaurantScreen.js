@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/outline";
@@ -13,10 +13,13 @@ import DishCard from "../components/DishCard";
 import DishRow from "../components/DishRow";
 import BasketIcon from "../components/BasketIcon";
 import { selectBasketItems } from "../features/basketSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setRestaurant } from "../features/restaurantSlice";
 
 const RestaurantScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const {
     params: {
       id,
@@ -32,6 +35,22 @@ const RestaurantScreen = () => {
     },
   } = useRoute();
 
+  useEffect(() => {
+    dispatch(
+      setRestaurant({
+        id,
+        imgUrl,
+        title,
+        rating,
+        genre,
+        address,
+        short_description,
+        dishes,
+        long,
+        lat,
+      })
+    );
+  }, [dispatch]);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -50,7 +69,7 @@ const RestaurantScreen = () => {
             <ArrowLeftIcon size={20} color="#00CCBB" />
           </TouchableOpacity>
           <Image
-            source={require("../assets/mcdonalds.jpg")}
+            source={require("../assets/mcdonalds.jpg")} // TODO: change to dynamic
             className="h-56 w-full bg-gray-300 p-4"
           />
         </View>
