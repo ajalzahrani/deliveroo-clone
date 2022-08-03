@@ -51,12 +51,15 @@ const RestaurantScreen = () => {
       })
     );
   }, [dispatch]);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   });
+
   const items = useSelector(selectBasketItems);
+
   return (
     <>
       {items.length > 0 ? <BasketIcon /> : <></>}
@@ -116,36 +119,6 @@ const RestaurantScreen = () => {
             />
           ))}
         </View>
-
-        {/* My design */}
-        {/* <View className="px-3 pb-1 border-t-2">
-        <Text className="font-bold text-lg pt-2">{title}</Text>
-        <View className="flex-row items-center space-x-1">
-          <StarIcon color="green" opacity={0.5} size={22} />
-          <Text className="text-xs text-gray-500">
-            <Text className="text-green-500">{rating}</Text> . Offers
-          </Text>
-          <View className="flex-row items-center space-x-1">
-            <LocationMarkerIcon color="gray" opacity={0.4} size="22" />
-            <Text className="text-xs text-gray-500">nearby . {address}</Text>
-          </View>
-        </View>
-        <Text className="py-3 text-[13px] text-gray-500">
-          {short_description}
-        </Text>
-      </View>
-      <View className="flex-row items-center justify-between px-3 py-3 border border-gray-300">
-        <View className="flex-row items-center space-x-1">
-          <QuestionMarkCircleIcon size={20} color="gray" />
-          <Text className="px-4 font-bold">Have a food allergy?</Text>
-        </View>
-        <ChevronRightIcon size={15} color="gray" />
-      </View>
-      <View className="bg-gray-200 py-5">
-        <Text className="text-lg font-bold px-3">Menu</Text>
-      </View> */}
-        {/* Menu dishes */}
-        {/* <DishCard /> */}
       </ScrollView>
     </>
   );

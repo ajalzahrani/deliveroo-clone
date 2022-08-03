@@ -11,7 +11,7 @@ export const restaurantSlice = createSlice({
   },
   reducers: {
     setRestaurant: (state, action) => {
-      state.restaurnt = action.payload;
+      state.restaurant = action.payload;
     },
   },
 });
@@ -19,6 +19,6 @@ export const restaurantSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setRestaurant } = restaurantSlice.actions;
 
-export const selectRestaurant = (state) => state.restaurnt.items;
+export const selectRestaurant = (state) => state.restaurant.restaurant;
 
 export default restaurantSlice.reducer;
