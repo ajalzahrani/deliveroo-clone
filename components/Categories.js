@@ -19,7 +19,7 @@ export default function Categories() {
         setCategories(data);
       });
   }, []);
-  // console.log("Iam the cate", Categories);
+  // console.log("Iam the cate", Categories); TODO: delete this
   return (
     <ScrollView
       contentContainerStyle={{
@@ -37,7 +37,9 @@ export default function Categories() {
           title={category.name}
         />
       ))}
-      {/* <CategoryCard
+      {/* 
+      TODO: delete this
+      <CategoryCard
         imgUrl="https://links.papareact.com/gn7"
         title="testing 3"
       />

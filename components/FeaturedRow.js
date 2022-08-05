@@ -66,6 +66,7 @@ export default function FeaturedRow({ id, title, description }) {
             lat={restaurant.lat}
           />
         ))}
+        {/* TODO: Delecte bellow lines */}
         {/* <RestaurantCard
           id={123}
           imgUrl="https://links.papareact.com/gn7"
